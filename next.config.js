@@ -1,16 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  distDir: 'dist',
   images: {
+    unoptimized: true,
     domains: [
       'pbs.twimg.com',
-      'images.unsplash.com',
-      'a16z.com',
+      'abs.twimg.com',
       'upload.wikimedia.org',
       'unavatar.io'
     ],
-    unoptimized: true
   },
 }
 
