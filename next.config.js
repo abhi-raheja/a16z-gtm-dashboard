@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  distDir: 'dist',
   images: {
     domains: [
       'pbs.twimg.com',
@@ -8,6 +10,7 @@ const nextConfig = {
       'upload.wikimedia.org',
       'unavatar.io'
     ],
+    unoptimized: true
   },
 }
 

@@ -1,15 +1,16 @@
 {
   "build": {
     "image": "node:18",
-    "command": "rm -rf node_modules .next && npm cache clean --force && npm install && npm run build",
-    "publicDir": ".next",
+    "command": "rm -rf node_modules .next dist && rm -f pnpm-lock.yaml && npm cache clean --force && npm install && npm run build && cp -r .next dist",
+    "publicDir": "dist",
     "baseDir": ".",
     "environment": {
       "NODE_ENV": "production",
       "NODE_VERSION": "18",
       "NPM_CONFIG_PACKAGE_LOCK": "true",
       "NPM_CONFIG_PACKAGE_LOCK_ONLY": "false",
-      "SKIP_PNPM": "true"
+      "SKIP_PNPM": "true",
+      "NEXT_TELEMETRY_DISABLED": "1"
     }
   }
 }
