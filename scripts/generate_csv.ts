@@ -1,5 +1,4 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import { writeFile } from 'fs/promises';
 import { stringify } from 'csv-stringify/sync';
 import companies from '../src/data/companies';
 
@@ -15,35 +14,23 @@ interface CompanyData {
 async function main() {
     // Prepare data for CSV
     const companyData: CompanyData[] = companies.map(company => ({
-        name: company.name,
+        name: company.name || '',
         twitter_handle: company.twitter?.handle || '',
         twitter_url: company.twitter?.url || '',
         twitter_bio: company.twitter?.bio || '',
-        pinned_tweet_url: company.marketingCampaign?.pinnedTweetUrl || '',
+        pinned_tweet_url: company.twitter?.pinned_tweet_url || '',
         current_description: company.description || ''
     }));
 
-    // Sort by name
-    companyData.sort((a, b) => a.name.localeCompare(b.name));
-
-    // Write to CSV
-    const csvContent = stringify(companyData, {
+    // Convert to CSV
+    const csv = stringify(companyData, {
         header: true,
-        columns: [
-            'name',
-            'twitter_handle',
-            'twitter_url',
-            'twitter_bio',
-            'pinned_tweet_url',
-            'current_description'
-        ]
+        columns: ['name', 'twitter_handle', 'twitter_url', 'twitter_bio', 'pinned_tweet_url', 'current_description']
     });
 
-    const outputPath = path.join(__dirname, '..', 'companies.csv');
-    fs.writeFileSync(outputPath, csvContent);
-
-    console.log(`CSV file written to: ${outputPath}`);
-    console.log(`Total companies processed: ${companyData.length}`);
+    // Write to file
+    await writeFile('companies.csv', csv);
+    console.log('CSV file has been written successfully');
 }
 
 main().catch(console.error);

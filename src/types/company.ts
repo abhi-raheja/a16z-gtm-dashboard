@@ -9,6 +9,7 @@ export interface TwitterInfo {
     handle: string | null;
     url: string | null;
     bio: string | null;
+    pinned_tweet_url: string;
 }
 
 export interface Company {
@@ -17,6 +18,6 @@ export interface Company {
     description: string;
     website: string;
     category: string;
-    twitter: TwitterInfo;
+    twitter?: TwitterInfo;
     marketingCampaign: MarketingCampaign;
 }
