@@ -1,0 +1,9 @@
+**/pnpm-lock.yaml
+**/.pnpm
+**/node_modules
+.git
+.env
+.env.*
+.vercel
+.next
+dist
