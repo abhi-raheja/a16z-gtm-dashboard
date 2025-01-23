@@ -1,9 +1,9 @@
 {
   "build": {
     "image": "node:18",
-    "command": "rm -rf node_modules .next dist && rm -f pnpm-lock.yaml && npm cache clean --force && npm install && npm run build && cp -r .next dist",
+    "command": "npm install && npm run build",
     "publicDir": "dist",
-    "baseDir": ".",
+    "baseDir": "./",
     "environment": {
       "NODE_ENV": "production",
       "NODE_VERSION": "18",

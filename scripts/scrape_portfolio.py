@@ -6,6 +6,10 @@ import re
 from urllib.parse import urlparse, urljoin
 import os
 import tweepy
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 def clean_twitter_text(text: str) -> str:
     """Clean Twitter text by removing URLs, mentions, and hashtags."""
@@ -94,9 +98,9 @@ def scrape_a16z_portfolio() -> List[Dict]:
     
     # Initialize Twitter client
     client = tweepy.Client(
-        bearer_token="AAAAAAAAAAAAAAAAAAAAAAKMyQEAAAAAy0KLkKQNypO%2Ffz2sMeRVgDgaD18%3DhRtWfM3qApdtCll3f9CaRNLLQdhGfV71EQyh1XKkhS6lF3zsYf",
-        consumer_key="plmtSvRr1FvF6yTQw7c99Bgi5",
-        consumer_secret="zL6sTSx25lFFYNN2tyMcrc7LGEcB3TE44CdRVM4ntl6xNSEIxk",
+        bearer_token=os.getenv('TWITTER_BEARER_TOKEN'),
+        consumer_key=os.getenv('TWITTER_API_KEY'),
+        consumer_secret=os.getenv('TWITTER_API_SECRET'),
         wait_on_rate_limit=True
     )
     
